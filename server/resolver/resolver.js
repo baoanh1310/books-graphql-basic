@@ -7,9 +7,14 @@ const resolvers = {
         authors: () => authors,
         author: (parent, args) => authors.find(author => author.id.toString() === args.id),
     },
+
     Book: {
         author: (parent, args) => authors.find(author => author.id === parent.id) 
     },
+
+    Author: {
+        books: (parent, args) => books.filter(book => book.authorId === parent.id)
+    }
 };
 
 module.exports = resolvers;
